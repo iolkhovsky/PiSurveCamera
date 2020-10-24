@@ -59,6 +59,7 @@ def main(args):
                 samples_cnt += len(boxes)
                 last_save_tstamp = time.time()
                 logging.info("Collected: "+str(samples_cnt))
+                print("Collected: ", samples_cnt)
 
 
 if __name__ == "__main__":
