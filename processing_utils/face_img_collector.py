@@ -5,6 +5,9 @@ import time
 from os.path import join, isdir
 from os import makedirs
 from shutil import rmtree
+import sys
+
+sys.path.append(join(sys.path[0], "../"))
 
 from processing_utils.haar_detector import FaceDetector
 from processing_utils.cropper import ImgCropper
