@@ -6,21 +6,21 @@ from utils import convert2grayscale
 class BaseDetector:
 
     def __init__(self):
-        self.xml_config = None
-        self.cascade = None
-        self.__build()
+        self._xml_config = None
+        self._cascade = None
+        self._build()
         return
 
-    def build(self):
-        if self.xml_config is not None:
-            self.cascade = cv2.CascadeClassifier(cv2.data.haarcascades + self.xml_config)
+    def _build(self):
+        if self._xml_config is not None:
+            self._cascade = cv2.CascadeClassifier(cv2.data.haarcascades + self._xml_config)
         return
 
     def detect(self, frame):
-        if self.cascade is None:
+        if self._cascade is None:
             raise TypeError("Haar detector is not initialized")
         frame = convert2grayscale(frame)
-        return self.cascade.detectMultiScale(frame, 1.3, 5)
+        return self._cascade.detectMultiScale(frame, 1.3, 5)
 
     def __call__(self, *args, **kwargs):
         frame = None
@@ -39,16 +39,16 @@ class BaseDetector:
 class FaceDetector(BaseDetector):
 
     def __init__(self):
-        self.xml_config = "haarcascade_frontalface_default.xml"
-        self.build()
+        self._xml_config = "haarcascade_frontalface_default.xml"
+        self._build()
         return
 
 
 class EyeDetector(BaseDetector):
 
     def __init__(self):
-        self.xml_config = "haarcascade_eye.xml"
-        self.build()
+        self._xml_config = "haarcascade_eye.xml"
+        self._build()
         return
 
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
             for ex, ey, ew, eh in eyes:
                 img = cv2.rectangle(img, (ex + x, ey + y), (ex + x + ew, ey + y + eh), (0, 255, 0), 2)
         cv2.imshow("camera", img)
-        if cv2.waitKey(10) == 27:  # Клавиша Esc
+        if cv2.waitKey(10) == ord('q'):
             break
     cap.release()
     cv2.destroyAllWindows()

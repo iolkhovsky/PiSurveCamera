@@ -3,7 +3,7 @@ import time
 import imagezmq
 import cv2
 import argparse
-from haar_detector import FaceDetector
+from processing_utils.haar_detector import FaceDetector
 
 
 def parse():
