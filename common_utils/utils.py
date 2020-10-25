@@ -1,3 +1,4 @@
+import datetime
 
 
 def args2str(args):
@@ -35,3 +36,9 @@ def validate_box(box, xsz, ysz):
     return x, y, x2 - x + 1, y2 - y + 1
 
 
+def get_timestamp():
+    stamp = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    stamp = stamp.replace(" ", "_")
+    stamp = stamp.replace(":", "_")
+    stamp = stamp.replace("-", "_")
+    return stamp
