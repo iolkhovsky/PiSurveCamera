@@ -10,6 +10,8 @@ def predict_signle_image(model, img, labels_map=None):
     img_array = keras.preprocessing.image.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)
     predictions = model.predict(img_array)[0]
+    if len(predictions) == 1:
+        predictions = np.asarray([1.0 - predictions, predictions])
     if labels_map is None:
         return predictions
     else:
