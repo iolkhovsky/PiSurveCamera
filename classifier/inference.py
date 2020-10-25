@@ -25,9 +25,9 @@ def predict_signle_image(model, img, labels_map=None):
 
 
 if __name__ == "__main__":
-    loaded_model = keras.models.load_model("save_at_5.h5")
+    loaded_model = keras.models.load_model("checkpoints/model_ep10.h5")
     dataset_path = "/home/igor/datasets/CustomFaces/"
-    val_path = join(dataset_path, "train")
+    val_path = join(dataset_path, "val")
     img_paths = glob(join(val_path, "**/*.jpg"))
     img_size = (64, 64)
     for idx, impath in enumerate(img_paths):
