@@ -54,7 +54,7 @@ def main(args):
             if len(boxes):
                 subframes = cropper(boxes, frame)
                 for subid, subfr in enumerate(subframes):
-                    filename = join(args.repo, str(samples_cnt + subid) + ".jpg")
+                    filename = join(args.repo, get_timestamp() + str(samples_cnt + subid) + ".jpg")
                     cv2.imwrite(filename, subfr)
                 samples_cnt += len(boxes)
                 last_save_tstamp = time.time()
