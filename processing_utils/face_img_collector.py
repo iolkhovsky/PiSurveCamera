@@ -5,6 +5,9 @@ import time
 from os.path import join, isdir
 from os import makedirs
 from shutil import rmtree
+import sys
+
+sys.path.append(join(sys.path[0], "../"))
 
 from processing_utils.haar_detector import FaceDetector
 from processing_utils.cropper import ImgCropper
@@ -56,6 +59,7 @@ def main(args):
                 samples_cnt += len(boxes)
                 last_save_tstamp = time.time()
                 logging.info("Collected: "+str(samples_cnt))
+                print("Collected: ", samples_cnt)
 
 
 if __name__ == "__main__":
